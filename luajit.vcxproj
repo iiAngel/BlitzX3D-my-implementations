@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{2AFC3908-657F-4249-BF2B-7C6947176311}</ProjectGuid>
+    <ProjectName>luajit</ProjectName>
+    <RootNamespace>luajit</RootNamespace>
+    <Keyword>MakeFileProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <LuaJitSrc>$(ProjectDir)vendor\LuaJIT\src</LuaJitSrc>
+    <LuaJitLib>$(LuaJitSrc)\lua51.lib</LuaJitLib>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>cmd /c ""$(ProjectDir)build-luajit.cmd" debug"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cmd /c "del /q "$(LuaJitLib)" &amp; "$(ProjectDir)build-luajit.cmd" debug"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cmd /c "del /q "$(LuaJitLib)" &amp; del /q "$(LuaJitSrc)\luajit.exe""</NMakeCleanCommandLine>
+    <NMakeOutput>$(LuaJitLib)</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;_LIB;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(LuaJitSrc)</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>cmd /c ""$(ProjectDir)build-luajit.cmd" release"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cmd /c "del /q "$(LuaJitLib)" &amp; "$(ProjectDir)build-luajit.cmd" release"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cmd /c "del /q "$(LuaJitLib)" &amp; del /q "$(LuaJitSrc)\luajit.exe""</NMakeCleanCommandLine>
+    <NMakeOutput>$(LuaJitLib)</NMakeOutput>
+    <NMakePreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakeIncludeSearchPath>$(LuaJitSrc)</NMakeIncludeSearchPath>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
